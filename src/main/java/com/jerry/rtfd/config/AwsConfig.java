@@ -63,7 +63,7 @@ public class AwsConfig {
                     AwsBasicCredentials.create(accessKeyContent, secretKeyContent)
                 );
             } catch (IOException e) {
-                throw new RuntimeException("Failed to read AWS credentials from files", e);
+                throw new RuntimeException("Failed to read AWS credentials from files!", e);
             }
         }
         

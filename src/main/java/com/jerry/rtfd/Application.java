@@ -11,7 +11,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+        io.awspring.cloud.autoconfigure.core.AwsAutoConfiguration.class,
+        io.awspring.cloud.autoconfigure.core.CredentialsProviderAutoConfiguration.class,
+        io.awspring.cloud.autoconfigure.sqs.SqsAutoConfiguration.class // 新增
+})
 @EnableAsync
 @PropertySource(
         value = "classpath:secrets.properties",

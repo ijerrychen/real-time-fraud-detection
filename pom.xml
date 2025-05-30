@@ -61,10 +61,22 @@
 			<version>${aws.sdk.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>sts</artifactId>
+			<version>${aws.sdk.version}</version> <!-- 与其他AWS SDK版本一致 -->
+		</dependency>
+		<dependency>
 			<groupId>io.awspring.cloud</groupId>
 			<artifactId>spring-cloud-aws-starter-sqs</artifactId>
 			<version>${spring.cloud.aws.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.awspring.cloud</groupId>
+					<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

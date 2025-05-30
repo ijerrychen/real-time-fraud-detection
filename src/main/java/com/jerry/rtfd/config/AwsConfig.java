@@ -40,34 +40,46 @@ public class AwsConfig {
     }
     
     private AwsCredentialsProvider getAwsCredentialsProvider() {
-        // 1. 检查环境变量
-        String accessKey = env.getProperty("AWS_ACCESS_KEY_ID");
-        String secretKey = env.getProperty("AWS_SECRET_ACCESS_KEY");
-        
-        if (accessKey != null && !accessKey.isEmpty() && 
-            secretKey != null && !secretKey.isEmpty()) {
-            return StaticCredentialsProvider.create(
-                AwsBasicCredentials.create(accessKey, secretKey)
-            );
-        }
-        
-        // 2. 检查文件路径（用于Docker Secrets）
-        String accessKeyFile = env.getProperty("AWS_ACCESS_KEY_ID_FILE");
-        String secretKeyFile = env.getProperty("AWS_SECRET_ACCESS_KEY_FILE");
-        
-        if (accessKeyFile != null && secretKeyFile != null) {
-            try {
-                String accessKeyContent = new String(Files.readAllBytes(Paths.get(accessKeyFile))).trim();
-                String secretKeyContent = new String(Files.readAllBytes(Paths.get(secretKeyFile))).trim();
-                return StaticCredentialsProvider.create(
-                    AwsBasicCredentials.create(accessKeyContent, secretKeyContent)
-                );
-            } catch (IOException e) {
-                throw new RuntimeException("Failed to read AWS credentials from files!", e);
-            }
-        }
+//        // 1. 检查环境变量
+//        String accessKey = env.getProperty("AWS_ACCESS_KEY_ID");
+//        String secretKey = env.getProperty("AWS_SECRET_ACCESS_KEY");
+//
+//        if (accessKey != null && !accessKey.isEmpty() &&
+//            secretKey != null && !secretKey.isEmpty()) {
+//            return StaticCredentialsProvider.create(
+//                AwsBasicCredentials.create(accessKey, secretKey)
+//            );
+//        }
+//
+//        // 2. 检查文件路径（用于Docker Secrets）
+//        String accessKeyFile = env.getProperty("AWS_ACCESS_KEY_ID_FILE");
+//        String secretKeyFile = env.getProperty("AWS_SECRET_ACCESS_KEY_FILE");
+//
+//        if (accessKeyFile != null && secretKeyFile != null) {
+//            try {
+//                String accessKeyContent = new String(Files.readAllBytes(Paths.get(accessKeyFile))).trim();
+//                String secretKeyContent = new String(Files.readAllBytes(Paths.get(secretKeyFile))).trim();
+//                return StaticCredentialsProvider.create(
+//                    AwsBasicCredentials.create(accessKeyContent, secretKeyContent)
+//                );
+//            } catch (IOException e) {
+//                throw new RuntimeException("Failed to read AWS credentials from files!", e);
+//            }
+//        }
         
         // 3. 使用默认凭证链（环境变量、系统属性、~/.aws/credentials等）
-        return DefaultCredentialsProvider.create();
+        AwsCredentialsProvider provider = DefaultCredentialsProvider.builder()
+                .asyncCredentialUpdateEnabled(true) // 启用异步凭证更新
+                .build();
+
+        // 添加调试日志
+        try {
+            System.out.println("Resolved credentials: " + provider.resolveCredentials().accessKeyId());
+            System.out.println("Region: " + getAwsRegion());
+        } catch (Exception e) {
+            System.err.println("Error resolving credentials: " + e.getMessage());
+        }
+
+        return provider;
     }
 }

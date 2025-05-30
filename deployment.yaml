@@ -8,21 +8,21 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: fraud-detection
+      app: fraud-detection-app
   template:
     metadata:
       labels:
-        app: fraud-detection
+        app: fraud-detection-app
     spec:
-      serviceAccountName: sqs-access-sa
+      serviceAccountName: sqs-service-account
       containers:
-        - name: fraud-detection
+        - name: fraud-detection-container
           image: chenjie1984/real-time-fraud-detection:latest
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "dev"
+            - name: AWS_REGION
+              value: us-east-2
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +30,7 @@ metadata:
   name: fraud-detection-service
 spec:
   selector:
-    app: fraud-detection
+    app: fraud-detection-app
   ports:
     - protocol: TCP
       port: 80

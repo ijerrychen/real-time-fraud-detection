@@ -18,7 +18,7 @@ public class SqsConsumerService implements ErrorHandler {
     private final ObjectMapper objectMapper;
     private final Executor asyncTaskExecutor;
 
-    @SqsListener("${app.sqs.queue-name}")
+    @SqsListener(value = "${app.sqs.queue-name}")
     public void receiveMessage(String message) {
         log.debug("Received SQS message: {}", message);
         asyncTaskExecutor.execute(() -> {

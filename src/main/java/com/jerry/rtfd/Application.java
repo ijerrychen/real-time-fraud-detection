@@ -18,22 +18,7 @@ import java.util.concurrent.TimeUnit;
         ignoreResourceNotFound = true // 允许文件不存在
 )
 public class Application {
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-    }
-
-    @Bean
-    public Executor asyncTaskExecutor() {
-        int corePoolSize = 10;
-        int maxPoolSize = 20;
-        int queueCapacity = 1000;
-        return new ThreadPoolExecutor(
-                corePoolSize,
-                maxPoolSize,
-                60L,
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(queueCapacity),
-                new ThreadPoolExecutor.CallerRunsPolicy());
     }
 }

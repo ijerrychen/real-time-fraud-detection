@@ -17,6 +17,8 @@ public class SqsProducerService {
     private final SqsAsyncClient sqsAsyncClient;
     private final ObjectMapper objectMapper;
 
+    @Value("${aws.sqs.queueUrl}")
+    private String queueUrl;
     @Value("${app.sqs.queue-name}")
     private String queueName;
 
@@ -41,6 +43,6 @@ public class SqsProducerService {
     }
 
     private String getQueueUrl() {
-        return "https://sqs.us-east-2.amazonaws.com/659355121217/" + queueName;
+        return queueUrl + queueName;
     }
 }

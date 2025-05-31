@@ -17,8 +17,8 @@ public class SqsProducerService {
     private final SqsAsyncClient sqsAsyncClient;
     private final ObjectMapper objectMapper;
 
-    @Value("${aws.sqs.queueUrl}")
-    private String queueUrl;
+    @Value("${aws.sqs.queueUrl.prefix}")
+    private String queueUrlPrefix;
     @Value("${app.sqs.queue-name}")
     private String queueName;
 
@@ -26,7 +26,7 @@ public class SqsProducerService {
         try {
             String messageBody = objectMapper.writeValueAsString(transaction);
             SendMessageRequest request = SendMessageRequest.builder()
-                    .queueUrl(getQueueUrl())
+                    .queueUrl(new StringBuffer().append(queueUrlPrefix).append(queueName).toString())
                     .messageBody(messageBody)
                     .build();
 
@@ -40,9 +40,5 @@ public class SqsProducerService {
         } catch (JsonProcessingException e) {
             log.error("Error serializing transaction", e);
         }
-    }
-
-    private String getQueueUrl() {
-        return queueUrl + queueName;
     }
 }

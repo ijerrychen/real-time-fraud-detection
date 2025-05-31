@@ -13,9 +13,6 @@ import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 @Configuration
 @Slf4j
 public class AwsConfig {
-    @Value("${app.sqs.queue-name}")
-    private String queueName;
-
     private final Environment env;
     
     public AwsConfig(Environment env) {

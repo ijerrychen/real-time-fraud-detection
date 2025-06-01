@@ -16,7 +16,7 @@
 #### 2.1 本地工程运行
 - 首先将/src/main/resources/secrets.properties.example 改为secrets.properties，并将更换成你的aws身份凭据。在AwsConfig配置类中会构建aws凭据链。正确凭据链，是SQS正常连接和读写的关键。
 - 进入到项目根目录，执行 mvn clean package，从target目录下获取jar包
-![img.png](docs/images/jar.png)
+![img.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/jar.png)
 - jar包在任意目录下，执行java -jar *.jar即可运行
 #### 2.2 AWS EKS集群运行
 - 创建EKS集群，创建ServiceAccount，IAM Role，策略，权限等，绑定Account与IAM Role，在配置正确的情况下服务运行在pod中，可以以绑定的IAM身份访问SQS。

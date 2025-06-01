@@ -24,12 +24,7 @@
 - 详细看根目录下的deployment.xml文件，镜像从docker bub拉取。
 
 ### 3.视频说明
-[点击查看完整视频介绍](video-introduce.html)
-
-<video controls width="100%">
-  <source src="https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4" type="video/mp4">
-</video>
-
+[点击查看完整视频介绍]((https://ijerrychen.github.io/real-time-fraud-detection/video-introduce.html))
 [下载演示视频](https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4)
 #### 演示说明：
 - 项目需求简述

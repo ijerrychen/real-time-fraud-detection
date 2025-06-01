@@ -51,7 +51,7 @@ aws.secretKey=REPLACE_WITH_YOUR_AWS_SECRET_KEY
 
 ### Docker部署
 docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie1984/real-time-fraud-detection:latest --spring.profiles.active=dev
-#### 注意：如果使用windows系统，请安装docker desktop，参考文档[地址](https://docs.docker.com/desktop/setup/install/windows-install/)
+#### 注意：如果使用windows系统，请安装[docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
 
 ### AWS EKS部署
 [部署清单][deployment.yaml](deployment.yaml)

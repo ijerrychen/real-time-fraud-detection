@@ -18,7 +18,7 @@
 - 功能完备
   - 支持实时检测，当发生一笔金融交易时，会实时处理交易数据，并开展欺诈检测活动
   - 当命中欺诈规则，会发送sms和email通知。
-  - 支持基于简单规则的金融欺诈检测，[规则配置化][fraud-rules.properties](../src/main/resources/fraud-rules.properties)(./main/resources/fraud-rules.properties)
+  - 支持基于简单规则的金融欺诈检测，[规则配置化][fraud-rules.properties](../src/main/resources/fraud-rules.properties)
 - 性能
   - 交易数据发送、接收、处理异步化处理。交易数据异步发送到sqs队列，检测服务监听sqs队列，并基于线程池进行检测。当命中欺诈规则时，异步发送多渠道通知（这里是模拟通知）。
   - 支持容器层面的HPA，详见服务部署清单[deployment.yaml](../deployment.yaml)
@@ -30,11 +30,11 @@
   - 4.异步处理中，调用FraudDetectionService进行欺诈检测。
   - 5.欺诈检测规则包括：交易金额超过阈值（thresholdAmount）或账户在可疑账户列表（suspiciousAccounts）中。
   - 6.如果检测到欺诈，则记录告警日志（模拟发送SMS和Email），这些日志将被发送到CloudWatch Logs。
-- 业务流程图
-  - ![business-flow.png](images/business-flow.png)
+- 业务流程图!
+  - ![business-flow.png](../docs/images/business-flow.png)
 ## 架构说明
 - 架构图
-  - ![architecture-diagrams.png](images/architecture-diagrams.png)
+  - ![architecture-diagrams.png](../docs/images/architecture-diagrams.png)
 - 数据流
   - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
   - (HTTP)                  (Async)     (Rules)        (Alerts)
@@ -47,7 +47,7 @@
   - Fraud Rules：可动态加载的欺诈规则配置
   - CloudWatch Logs：集中式的日志存储
 - 依赖关系
-  - ![dependencies-diagram.png](images/dependencies-diagram.png)
+  - ![dependencies-diagram.png](../docs/images/dependencies-diagram.png)
   - 
 - 测试报告
-  - ![test-report.png](images/test-report.png)
+  - ![test-report.png](../docs/images/test-report.png)

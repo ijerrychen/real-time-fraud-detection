@@ -54,9 +54,18 @@ docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie19
 #### 注意：如果使用windows系统，请安装docker desktop，参考文档[地址](https://docs.docker.com/desktop/setup/install/windows-install/)
 
 ### AWS EKS部署
-详见[部署清单](./deployment.yaml)
+[部署清单][deployment.yaml](deployment.yaml)
 
 ### 项目详情
-- [需求详情](./docs/requirements.md)
-- [项目设计]
+- [需求详情][requirements.md](docs/requirements.md)
+- [设计详情][design.md](docs/design.md)
+
+### 后续扩展
+- 按需对接真实消息通知服务
+- 增加对欺诈规则的数据库和管理工作台配置管理
+- 增加复杂规则的配置和检测逻辑
+- 增加基于规则引擎的规则检测机制
+- 支持更加完备的自动化流水线部署，包基础环境的部署和应用部署
+- 增加完备的服务监控和运维通知截止
+- 更加完备的测试方案，包括集成测试、端到端测试手段
 

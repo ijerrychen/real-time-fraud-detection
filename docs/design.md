@@ -31,13 +31,13 @@
   - 5.欺诈检测规则包括：交易金额超过阈值（thresholdAmount）或账户在可疑账户列表（suspiciousAccounts）中。
   - 6.如果检测到欺诈，则记录告警日志（模拟发送SMS和Email），这些日志将被发送到CloudWatch Logs。
 - 业务流程
-  - 业务流程图![business-flow.png](images/business-flow.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+  - ![业务流程图](images/business-flow.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
 ## 架构说明
 - 架构
-  - 架构图![architecture-diagrams.png](images/architecture-diagrams.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+  - ![架构图](images/architecture-diagrams.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
 - 数据流
   - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
-  - (HTTP)------------------(Async)-----(Rules)--------(Alerts)
+  - (HTTP)---------------------(Async)---------(Rules)--------(Alerts)
 - 关键组件说明
   - Client：提交交易请求的客户端
   - Transaction Controller：接收交易请求的 REST 端点
@@ -47,6 +47,6 @@
   - Fraud Rules：可动态加载的欺诈规则配置
   - CloudWatch Logs：集中式的日志存储
 - 依赖关系
-  - 依赖关系图![dependencies-diagram.png](images/dependencies-diagram.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+  - ![依赖关系图](images/dependencies-diagram.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
 - 测试报告
-  - 报告图片![test-report.png](images/test-report.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+  - ![报告图片](images/test-report.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地

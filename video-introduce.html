@@ -1,55 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实时欺诈检测系统演示</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+
+        .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-        .video-container {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
-        video {
+
+        header {
+            background: linear-gradient(135deg, #1e5799 0%, #207cca 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-radius: 4px;
+            height: 100%;
+            outline: none;
         }
-        .description {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f1f8ff;
-            border-radius: 6px;
+
+        .info-panel {
+            padding: 20px;
+            background: #f8fafc;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: #1e5799;
+            margin-right: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #1e5799;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #154279;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-download {
+            background: #28a745;
+        }
+
+        .btn-download:hover {
+            background: #218838;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-<h1>实时欺诈检测系统演示</h1>
+<div class="container">
+    <header>
+        <h1>实时欺诈检测系统演示</h1>
+        <p class="subtitle">基于阿里云 OSS 托管的演示视频，展示系统核心功能和操作流程</p>
+    </header>
 
-<div class="video-container">
-    <video controls width="100%" style="max-width:800px; border-radius:8px;">
-        <source src="https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4" type="video/mp4">
-        您的浏览器不支持视频播放
-    </video>
-
-    <div class="description">
-        <h3>演示说明：</h3>
-        <ul>
-            <li>项目需求简述</li>
-            <li>技术栈-开发环境-开发工具-仓库-运行环境说明</li>
-            <li>业务流程-系统架构简介</li>
-            <li>系统流程-功能演示</li>
-            <li>核心代码逻辑说明</li>
-        </ul>
+    <div class="video-container">
+        <video controls>
+            <source src="https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4" type="video/mp4">
+            您的浏览器不支持HTML5视频播放
+        </video>
     </div>
+
+    <div class="info-panel">
+        <div class="meta">
+            <div class="description">
+                <h3>演示说明：</h3>
+                <ul>
+                    <li>项目需求简述</li>
+                    <li>技术栈-开发环境-开发工具-仓库-运行环境说明</li>
+                    <li>业务流程-系统架构简介</li>
+                    <li>系统流程-功能演示</li>
+                    <li>核心代码逻辑说明</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="#" class="btn" onclick="document.querySelector('video').play()">
+                <i class="fas fa-play"></i> 播放视频
+            </a>
+            <a href="https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4"
+               download="实时欺诈检测系统演示.mp4"
+               class="btn btn-download">
+                <i class="fas fa-download"></i> 下载演示视频
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 实时欺诈检测系统 | 视频托管于阿里云 OSS | 华南3（广州）区域</p>
+    </footer>
 </div>
 
-<p>返回 <a href="README.md">项目主页</a></p>
+<script>
+    // 增强视频播放体验
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.querySelector('video');
+
+        // 自动聚焦视频元素
+        video.focus();
+
+        // 添加键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT') return;
+
+            switch(e.key) {
+                case ' ':
+                    e.preventDefault();
+                    video.paused ? video.play() : video.pause();
+                    break;
+                case 'ArrowRight':
+                    video.currentTime += 5;
+                    break;
+                case 'ArrowLeft':
+                    video.currentTime -= 5;
+                    break;
+                case 'f':
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) {
+                        video.webkitRequestFullscreen();
+                    }
+                    break;
+            }
+        });
+
+        // 添加播放状态提示
+        video.addEventListener('play', () => {
+            console.log('视频开始播放');
+        });
+
+        video.addEventListener('error', () => {
+            console.error('视频加载错误:', video.error);
+            alert('视频加载失败，请检查网络连接或视频地址');
+        });
+    });
+</script>
 </body>
 </html>

@@ -61,7 +61,7 @@ docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie19
 - [设计详情][design.md](docs/design.md)
 
 ### 后续扩展
-- 按需对接真实消息通知服务
+- 按需对接真实消息通知服务，并且对对不同的通知方式提供不同的实现类。
 - 增加对欺诈规则的数据库和管理工作台配置管理
 - 增加复杂规则的配置和检测逻辑
 - 增加基于规则引擎的规则检测机制

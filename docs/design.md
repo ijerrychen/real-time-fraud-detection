@@ -36,7 +36,7 @@
 ## 架构说明
 - 架构
   - [architecture-diagrams.png](images/architecture-diagrams.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
-  - ![architecture-diagrams.png](images/architecture-diagrams.png)
+  - ![architecture-diagrams.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/architecture-diagrams.png)
   - 数据流
     - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
     - (HTTP)---------------------(Async)---------(Rules)--------(Alerts)

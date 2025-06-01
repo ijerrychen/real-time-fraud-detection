@@ -31,10 +31,10 @@
   - 5.欺诈检测规则包括：交易金额超过阈值（thresholdAmount）或账户在可疑账户列表（suspiciousAccounts）中。
   - 6.如果检测到欺诈，则记录告警日志（模拟发送SMS和Email），这些日志将被发送到CloudWatch Logs。
 - 业务流程图!
-  - ![business-flow.png](../docs/images/business-flow.png)
+  - ![business-flow.png](images/business-flow.png)
 ## 架构说明
 - 架构图
-  - ![architecture-diagrams.png](../docs/images/architecture-diagrams.png)
+  - ![architecture-diagrams.png](images/architecture-diagrams.png)
 - 数据流
   - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
   - (HTTP)                  (Async)     (Rules)        (Alerts)
@@ -47,7 +47,6 @@
   - Fraud Rules：可动态加载的欺诈规则配置
   - CloudWatch Logs：集中式的日志存储
 - 依赖关系
-  - ![dependencies-diagram.png](../docs/images/dependencies-diagram.png)
-  - 
+  - ![dependencies-diagram.png](images/dependencies-diagram.png)
 - 测试报告
-  - ![test-report.png](../docs/images/test-report.png)
+  - ![test-report.png](images/test-report.png)

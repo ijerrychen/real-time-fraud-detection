@@ -34,7 +34,7 @@
   - ![business-flow.png](images/business-flow.png)
 ## 架构说明
 - 架构图
-  - ![architecture-diagrams.png](images/architecture-diagrams.png)
+  - ![architecture-diagrams.jpg](images/architecture-diagrams.jpg)
 - 数据流
   - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
   - (HTTP)                  (Async)     (Rules)        (Alerts)

@@ -24,7 +24,7 @@
 - 详细看根目录下的deployment.xml文件，镜像从docker bub拉取。
 
 ### 3.视频说明
-[点击查看完整视频介绍](https://ijerrychen.github.io/real-time-fraud-detection/video-introduce.html))
+[点击查看完整视频介绍](https://ijerrychen.github.io/real-time-fraud-detection/video-introduce.html)
 [下载演示视频](https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4)
 #### 演示说明：
 - 项目需求简述
@@ -61,7 +61,7 @@ docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie19
 #### 注意：如果使用windows系统，请安装[docker desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
 
 ### AWS EKS部署
-[部署清单][deployment.yaml](deployment.yaml)
+- [部署清单][deployment.yaml](deployment.yaml)
 
 ### 项目详情
 - [需求详情][requirements.md](docs/requirements.md)

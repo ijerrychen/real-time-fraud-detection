@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fraud-detection-deployment
 spec:
-  replicas: 2
+  replicas: 2  # 初始副本数
   selector:
     matchLabels:
       app: fraud-detection-app
@@ -23,6 +23,16 @@ spec:
           env:
             - name: AWS_REGION
               value: us-east-2
+            # 添加JVM内存配置
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xmx1g -Xms512m"  # 堆内存最大1G，初始512M
+          resources:
+            requests:
+              cpu: "500m"    # 0.5 CPU核心
+              memory: "1Gi"  # 1GB内存
+            limits:
+              cpu: "2000m"   # 2 CPU核心
+              memory: "3Gi"  # 3GB内存
 ---
 apiVersion: v1
 kind: Service
@@ -36,3 +46,30 @@ spec:
       port: 80
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fraud-detection-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fraud-detection-deployment
+  minReplicas: 2    # 最低副本数
+  maxReplicas: 8    # 最高副本数（适合3节点集群）
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75  # CPU使用率75%时触发扩容
+  # 添加缩容稳定窗口避免抖动
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # 5分钟缩容冷却
+      policies:
+        - type: Percent
+          value: 20
+          periodSeconds: 60

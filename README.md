@@ -1,0 +1,57 @@
+# 一个基于简单规则和黑名单的金融交易欺诈检测服务
+
+## 概要描述
+当发起一笔金融交易时，实时检测交易的金额是否大于某个阈值或处在黑名单中，当命中规则时，发送短信、邮件等多种方式通知出来。
+
+## 快速入门
+本工程是一个基于AWS Cloud原生服务构建的应用，部署在AWS EKS上，依赖AWS SQS服务。因此，在运行前需要先准备AWS Cloud资源，包AWS EC2，AWS EKS集群，AWS SQS，并创建相应的IMA角色、权限、策略，以及EKS ServiceAccount。正确配置各种资源的权限是服务正常运行的前提。
+### 1.基础环境
+#### 1.1 该工程基于SpringBoot3.x开发
+#### 1.2 Java版本 JDK 21
+#### 1.3 Maven版本 maven 3.5+
+#### 1.4 AWS SDK for JAVA 2.x
+#### 1.5 Spring Cloud for AWS 3.x
+#### 先查看工程中的pom文件，确认以上核心组件，避免版本不兼容的问题
+### 2.如何运行
+#### 2.1 本地工程运行
+#### 1)首先将/src/main/resources/secrets.properties.example 改为secrets.properties，并将更换成你的aws身份凭据。在AwsConfig配置类中会构建aws凭据链。正确凭据链，是SQS正常连接和读写的关键。
+#### 2)进入到项目根目录，执行 mvn clean package，从target目录下获取jar包
+![img.png](doc/image/jar.png)
+#### 3)jar包在任意目录下，执行java -jar *.jar即可运行
+#### 2.2 AWS EKS集群运行
+##### 1）创建EKS集群，创建ServiceAccount，IAM Role，策略，权限等，绑定Account与IAM Role，在配置正确的情况下服务运行在pod中，可以以绑定的IAM身份访问SQS。
+##### 2）创建和选择VPC子网，其中public子网配置IGW网关，private子网需要配置NAT网关，这样pod可以访问公网。按需要给EKS集群分配子网类型。子网分配需要在不同的可用区。
+##### 3) 详细看根目录下的deployment.xml文件，镜像从docker bub拉取。
+
+### 3.视频说明
+
+### 4.配置说明
+#### 4.1 欺诈规则
+##### 1)欺诈规则配置在src/main/resource目录下的fraud-rules.properties文件中，可以按需求和部署环境调整
+```
+# rules for detection
+rule.thresholdAmount=10000
+rule.suspiciousAccounts=pandas,monkey,tiger
+```
+##### 2）aws相关配置在src/main/resource下的application.properties和secrets.properties文件里，包括
+```
+# ---application.properties---
+# AWS configuration
+aws.region=[YOUR REGION]
+
+# SQS queue name
+aws.sqs.queueUrl.prefix=https://sqs.[YOUR REGION].amazonaws.com/[YOUR ACCESS KEY]/
+app.sqs.queue-name=[YOUR QUEUE NAME]
+
+# ---secrets.properties---
+# 注意在.gitignore文件中将secrets.properties加入，该文件仅用于本地测试使用
+aws.accessKeyId=REPLACE_WITH_YOUR_AWS_ACCESS_KEY
+aws.secretKey=REPLACE_WITH_YOUR_AWS_SECRET_KEY
+```
+
+### Docker部署
+
+### AWS EKS部署
+
+
+

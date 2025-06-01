@@ -24,7 +24,14 @@
 - 详细看根目录下的deployment.xml文件，镜像从docker bub拉取。
 
 ### 3.视频说明
-
+[点击查看视频介绍](docs/video-introduce.html)
+[下载演示视频](https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4)
+#### 演示说明：
+- 项目需求简述
+- 技术栈-开发环境-开发工具-库-运行环境说明
+- 业务流程-系统架构简介
+- 系统流程-功能演示
+- 核心代码逻辑说明
 ### 4.配置说明
 #### 4.1 欺诈规则
 - 欺诈规则配置在src/main/resource目录下的fraud-rules.properties文件中，可以按需求和部署环境调整

@@ -37,17 +37,17 @@
 - 架构
   - [architecture-diagrams.png](images/architecture-diagrams.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
   - ![architecture-diagrams.png](images/architecture-diagrams.png)
-- 数据流
-  - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
-  - (HTTP)---------------------(Async)---------(Rules)--------(Alerts)
-- 关键组件说明
-  - Client：提交交易请求的客户端
-  - Transaction Controller：接收交易请求的 REST 端点
-  - SQS Queue：用于解耦处理流程的消息队列
-  - SQS Consumer：异步消费消息的服务
-  - Fraud Detection：包含核心欺诈检测逻辑
-  - Fraud Rules：可动态加载的欺诈规则配置
-  - CloudWatch Logs：集中式的日志存储
+  - 数据流
+    - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
+    - (HTTP)---------------------(Async)---------(Rules)--------(Alerts)
+  - 关键组件说明
+    - Client：提交交易请求的客户端
+    - Transaction Controller：接收交易请求的 REST 端点
+    - SQS Queue：用于解耦处理流程的消息队列
+    - SQS Consumer：异步消费消息的服务
+    - Fraud Detection：包含核心欺诈检测逻辑
+    - Fraud Rules：可动态加载的欺诈规则配置
+    - CloudWatch Logs：集中式的日志存储
 - 依赖关系
   - [dependencies-diagram.png](images/dependencies-diagram.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
   - ![dependencies-diagram.png](images/dependencies-diagram.png)

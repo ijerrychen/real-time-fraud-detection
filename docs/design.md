@@ -19,6 +19,8 @@
   - 支持实时检测，当发生一笔金融交易时，会实时处理交易数据，并开展欺诈检测活动
   - 当命中欺诈规则，会发送sms和email通知。
   - 支持基于简单规则的金融欺诈检测，规则配置化[fraud-rules.properties](../src/main/resources/fraud-rules.properties)
+- 高可用
+  - ![自动恢复](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/high-availability-test.png)
 - 性能
   - 交易数据发送、接收、处理异步化处理。交易数据异步发送到sqs队列，检测服务监听sqs队列，并基于线程池进行检测。当命中欺诈规则时，异步发送多渠道通知（这里是模拟通知）。
   - 支持容器层面的HPA，详见服务部署清单[deployment.yaml](../deployment.yaml)

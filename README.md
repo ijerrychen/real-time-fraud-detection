@@ -26,8 +26,8 @@
 ### 3.视频说明
 - [点击查看完整视频介绍](https://ijerrychen.github.io/real-time-fraud-detection/video-introduce.html)--[下载演示视频](https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4)
 
-【备用下载】上述链接失效时，请通过[网盘下载视频](https://wwdt.lanzout.com/irazA2xtklsj)，需输入视频密码，如下:
-密码:hello
+- 【备用下载】上述链接失效时，请通过[网盘下载视频](https://wwdt.lanzout.com/irazA2xtklsj)，需输入视频密码，如下:
+- 【密码】:hello
 
 #### 演示说明：
 - 项目需求简述

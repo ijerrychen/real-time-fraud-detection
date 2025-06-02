@@ -25,7 +25,9 @@
 
 ### 3.视频说明
 [点击查看完整视频介绍](https://ijerrychen.github.io/real-time-fraud-detection/video-introduce.html)
+
 [下载演示视频](https://work-video-2025.oss-cn-guangzhou.aliyuncs.com/real-time-fraud-detection/real-time-fraud-detection-app.mp4)
+
 #### 演示说明：
 - 项目需求简述
 - 技术栈-开发环境-开发工具-库-运行环境说明
@@ -68,7 +70,7 @@ docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie19
 - [设计详情][design.md](docs/design.md)
 
 ### 后续扩展
-- 按需对接真实消息通知服务，并且对对不同的通知方式提供不同的实现类。
+- 按需对接sms和email服务，提供不同的通知实现类。
 - 增加对欺诈规则的数据库和管理工作台配置管理
 - 增加复杂规则的配置和检测逻辑
 - 增加基于规则引擎的规则检测机制

@@ -42,7 +42,6 @@
     - RPS时间曲线
       详见压测报告
 
-
 ```
 ## HPA验证
 【符合预期】 由2个副本扩容至8个副本，符合HPA配置的初始2个，最大8个
@@ -165,4 +164,5 @@ locust -f locustfile.py --headless -u 1000 -r 100 -t 10m \
 -H http://$ELB_ENDPOINT
 ```
 - 8.查看HTML报告
-下载report.html，在本地浏览器中打开report.html。
+[stress-test-report](https://ijerrychen.github.io/real-time-fraud-detection/stress-test-report.html) (链接打开慢，请耐心等待)
+亦可下载根目录下[stress-test-report.html](../../stress-test-report.html)，在本地浏览器中打开report。

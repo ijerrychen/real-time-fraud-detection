@@ -69,7 +69,7 @@ docker run -d --name fraud-detection-app -p 8080:8080 --restart always chenjie19
 ### 项目详情
 - [需求详情][requirements.md](docs/requirements.md)
 - [设计详情][design.md](docs/design.md)
-
+- [压力测试报告][stress-test.md](docs/stress-test/stress-test.md)
 ### 后续扩展
 - 按需对接sms和email服务，提供不同的通知实现类。
 - 增加对欺诈规则的数据库和管理工作台配置管理

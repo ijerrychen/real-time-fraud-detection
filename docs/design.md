@@ -20,10 +20,15 @@
   - 当命中欺诈规则，会发送sms和email通知。
   - 支持基于简单规则的金融欺诈检测，规则配置化[fraud-rules.properties](../src/main/resources/fraud-rules.properties)
 - 高可用
-  - ![自动恢复](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/high-availability-test.png)
+  - VPC子网高可用，子网分别处在us-east-2a和us-east-2b两个区域
+  - EKS集群高可用，支持Pods Crash后自动恢复，如图![自动恢复](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/high-availability-test.png)
+- 弹性伸缩
+  - 支持EKS集群的HPA弹性伸缩
+  - 服务部署清单[deployment.yaml](../deployment.yaml)
+  - [点击查看弹性伸缩验证](stress-test/stress-test.md#弹性伸缩验证)
 - 性能
-  - 交易数据发送、接收、处理异步化处理。交易数据异步发送到sqs队列，检测服务监听sqs队列，并基于线程池进行检测。当命中欺诈规则时，异步发送多渠道通知（这里是模拟通知）。
-  - 支持容器层面的HPA，详见服务部署清单[deployment.yaml](../deployment.yaml)
+  - 交易数据发送、接收、处理异步化处理。交易数据异步发送到sqs队列，检测服务监听sqs队列，并基于线程池进行检测。当命中欺诈规则时，异步发送多渠道通知（这里是模拟通知）
+  - [点击查看压力测试](stress-test/stress-test.md)和[测试报告](https://ijerrychen.github.io/real-time-fraud-detection/stress-test-report.html)
 ## 业务流程
 - 系统的主要流程如下：
   - 1.交易通过REST API（/transactions）提交到TransactionController。
@@ -34,15 +39,15 @@
   - 6.如果检测到欺诈，则记录告警日志（模拟发送SMS和Email），这些日志将被发送到CloudWatch Logs。
 - 业务流程
 ![business-flow.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/business-flow.png)
-[business-flow.png](images/business-flow.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+[business-flow.png](images/business-flow.png)
 ## 架构说明
-- 架构
+### 架构图
 ![architecture-diagrams.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/architecture-diagrams.png)
-[architecture-diagrams.png](images/architecture-diagrams.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
-  - 数据流
+[architecture-diagrams.png](images/architecture-diagrams.png)
+#### 数据流
     - Client → ALB → EKS Pods → SQS → Fraud Detection → CloudWatch
     - (HTTP)----------------------(Async)---------(Rules)----------(Alerts)
-  - 关键组件说明
+#### 关键组件说明
     - Client：提交交易请求的客户端
     - Transaction Controller：接收交易请求的 REST 端点
     - SQS Queue：用于解耦处理流程的消息队列
@@ -50,9 +55,9 @@
     - Fraud Detection：包含核心欺诈检测逻辑
     - Fraud Rules：可动态加载的欺诈规则配置
     - CloudWatch Logs：集中式的日志存储
-- 依赖关系
+### 依赖关系
 ![dependencies-diagram.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/dependencies-diagram.png)
-[dependencies-diagram.png](images/dependencies-diagram.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
-- 测试报告
-![test-report.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/test-report.png)
-[test-report.png](images/test-report.png)，github有时无法正常，如果打不开，请观看视频，或克隆到本地
+[dependencies-diagram.png](images/dependencies-diagram.png)
+### 测试报告
+  - 单元测试![test-report.png](https://media.githubusercontent.com/media/ijerrychen/lfs/refs/heads/master/rtf/images/test-report.png)
+  - [点击查看压力测试](stress-test/stress-test.md)

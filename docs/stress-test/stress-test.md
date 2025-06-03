@@ -2,7 +2,11 @@
 ## 简介
 这是一个使用开源的Locust做的压力测试。 Locust是一个开源的性能测试工具，主要用于模拟用户行为来测试web站点或其他系统的负载能力‌。它允许用户使用Python编写测试脚本，定义用户的行为，并通过一个基于Web的用户界面实时监控测试结果‌
 ## 测试报告
-[report.html](report.html)
+[stress-test-report](https://ijerrychen.github.io/real-time-fraud-detection/stress-test-report.html)
+请求类型​	​比例​	​数据特征​	​预期行为​
+正常交易	80%	金额10−500, 主流商户	成功处理 (HTTP 200)
+高风险交易	15%	金额5000−10000, 奢侈品商户	欺诈检测 (HTTP 202)
+无效交易	5%	空字段/负金额/格式错误	验证失败 (HTTP 400)
 ## 测试详细过程
 ### 测试脚本
 - [locustfile.py](locustfile.py)
